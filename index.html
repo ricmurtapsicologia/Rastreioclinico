@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Título e Descrição da Página -->
+  <title>RAC-5TR: Rastreio Autoaplicável Clínico</title>
+  <meta name="description" content="Rastreio autoaplicável clínico baseado no DSM-5-TR para identificar áreas que necessitam de apoio terapêutico.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.pinimg.com/736x/20/47/0e/20470ecb2733ef043829688094120e9c.jpg" type="image/jpeg">
+
+  <!-- Metatags Open Graph / WhatsApp Preview -->
+  <meta property="og:title" content="RAC-5TR: Rastreio Autoaplicável Clínico">
+  <meta property="og:description" content="Realize seu rastreio e identifique áreas para apoio terapêutico.">
+  <meta property="og:image" content="https://i.pinimg.com/736x/20/47/0e/20470ecb2733ef043829688094120e9c.jpg">
+  <meta property="og:url" content="https://seusite.com">
+  <meta property="og:type" content="website">
+
+  <!-- Metatags Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAC-5TR: Rastreio Autoaplicável Clínico">
+  <meta name="twitter:description" content="Realize seu rastreio e identifique áreas para apoio terapêutico.">
+  <meta name="twitter:image" content="https://i.pinimg.com/736x/20/47/0e/20470ecb2733ef043829688094120e9c.jpg">
+
+  <style>
+    /* Reset e estilos básicos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    header, footer, main, section {
+      padding: 20px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header {
+      background: #4a90e2;
+      color: #fff;
+      text-align: center;
+    }
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+    nav p {
+      font-size: 1em;
+    }
+    /* Splash Screen */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: #4a90e2;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1000;
+    }
+    #splash button.btn {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    #splash button.btn:hover {
+      background: #357ab8;
+      transform: scale(1.05);
+    }
+    /* Instruções e Formulário */
+    .instructions {
+      background: #e8f4ff;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+      text-align: justify;
+    }
+    form { padding: 20px; }
+    .info-field {
+      margin-bottom: 15px;
+    }
+    .info-field label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .info-field input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .block {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: transform 0.5s ease;
+    }
+    .block:hover { transform: translateX(10px); }
+    .block h3 {
+      margin-bottom: 10px;
+      font-size: 1.4em;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 5px;
+      font-weight: normal;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    .question p { margin-bottom: 5px; text-align: justify; }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .options label {
+      display: flex;
+      align-items: center;
+      font-size: 0.9em;
+    }
+    .options input { margin-right: 5px; }
+    /* Botões de ação */
+    .btn {
+      background: #4a90e2;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1em;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    @keyframes ctaBlink {
+      0% { box-shadow: 0 0 5px #357ab8; }
+      100% { box-shadow: 0 0 15px #357ab8; }
+    }
+    .btn:hover {
+      animation: ctaBlink 1.2s infinite alternate;
+      transform: scale(1.03);
+    }
+    /* Cards para termômetros */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 320px;
+      gap: 20px;
+      justify-items: center;
+      margin-top: 20px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .card h4 {
+      margin-bottom: 10px;
+      font-size: 0.9em;
+      text-align: center;
+      font-weight: normal;
+    }
+    .thermometer {
+      position: relative;
+      height: 200px;
+      width: 50px;
+      background: #ddd;
+      border-radius: 25px;
+      margin-bottom: 5px;
+      overflow: hidden;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    }
+    .thermometer-fill {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 0%;
+      background: green;
+      transition: height 1s ease, background 1s ease;
+    }
+    .thermometer-text {
+      margin-top: 3px;
+      font-size: 0.9em;
+    }
+    .legend {
+      font-size: 0.8em;
+      margin-bottom: 5px;
+    }
+    /* Resultados e Quadro Clínico */
+    #clinicalSummary {
+      background: #e8f4ff;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: justify;
+      font-weight: bold;
+    }
+    #finalNote {
+      font-size: 0.85em;
+      color: #555;
+      margin-top: 10px;
+      text-align: center;
+    }
+    #results {
+      display: none;
+      padding: 20px;
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .cards {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-auto-rows: 340px;
+      }
+    }
+    footer {
+      background: #f0f0f0;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      color: #555;
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    /* Conteúdo principal inicialmente oculto */
+    #mainContent {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h2>Bem-vindo(a)!</h2>
+    <p>Inicie seu rastreio e identifique áreas para apoio terapêutico.</p>
+    <button class="btn" onclick="hideSplash()">Iniciar</button>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <div class="container" id="mainContent">
+    <header>
+      <h1>RAC-5TR</h1>
+      <nav>
+        <p>Rastreio Autoaplicável Clínico – Versão DSM-5-TR</p>
+      </nav>
+    </header>
+    <main>
+      <section class="instructions">
+        <p>Informe seu nome e a data, depois leia cada questão e selecione a resposta que melhor descreve sua experiência (0 = Nunca, 1 = Raramente, 2 = Frequentemente, 3 = Sempre). Ao terminar, clique em <strong>"Corrigir"</strong> para visualizar seu resultado. <br><em>O resultado final será avaliado pelo psicólogo.</em></p>
+      </section>
+      <!-- Informações do Paciente -->
+      <div class="info-field">
+        <label for="patientName">Nome Completo:</label>
+        <input type="text" id="patientName" placeholder="Digite seu nome" required>
+      </div>
+      <div class="info-field">
+        <label for="responseDate">Data:</label>
+        <input type="date" id="responseDate" required>
+      </div>
+      <form id="racForm">
+        <!-- Seções geradas dinamicamente -->
+        <section class="block" id="block1">
+          <h3>Seção 1</h3>
+          <div id="questions1"></div>
+        </section>
+        <section class="block" id="block2">
+          <h3>Seção 2</h3>
+          <div id="questions2"></div>
+        </section>
+        <section class="block" id="block3">
+          <h3>Seção 3</h3>
+          <div id="questions3"></div>
+        </section>
+        <section class="block" id="block4">
+          <h3>Seção 4</h3>
+          <div id="questions4"></div>
+        </section>
+        <section class="block" id="block5">
+          <h3>Seção 5</h3>
+          <div id="questions5"></div>
+        </section>
+        <section class="block" id="block6">
+          <h3>Seção 6</h3>
+          <div id="questions6"></div>
+        </section>
+        <!-- Novo bloco 7: TAB (Transtorno Afetivo Bipolar) -->
+        <section class="block" id="block7">
+          <h3>Seção 7</h3>
+          <div id="questions7"></div>
+        </section>
+        <div style="text-align:center; margin-top:20px;">
+          <button type="button" class="btn" onclick="corrigir()">Corrigir</button>
+        </div>
+      </form>
+      
+      <!-- Resultados -->
+      <section id="results">
+        <h2>Resultados do Rastreio</h2>
+        <div id="clinicalSummary"></div>
+        
+        <!-- Cards com 7 termômetros -->
+        <div class="cards">
+          <div class="card">
+            <h4>TAS (Ansiedade Social)</h4>
+            <div class="thermometer" id="gauge1">
+              <div class="thermometer-fill" id="fill1"></div>
+            </div>
+            <div class="thermometer-text" id="text1">0</div>
+          </div>
+          <div class="card">
+            <h4>TDM (Depressão)</h4>
+            <div class="thermometer" id="gauge2">
+              <div class="thermometer-fill" id="fill2"></div>
+            </div>
+            <div class="thermometer-text" id="text2">0</div>
+          </div>
+          <div class="card">
+            <h4>TAG (Ansiedade Generalizada)</h4>
+            <div class="thermometer" id="gauge3">
+              <div class="thermometer-fill" id="fill3"></div>
+            </div>
+            <div class="thermometer-text" id="text3">0</div>
+          </div>
+          <div class="card">
+            <h4>TPE (Personalidade Evitativa)</h4>
+            <div class="thermometer" id="gauge4">
+              <div class="thermometer-fill" id="fill4"></div>
+            </div>
+            <div class="thermometer-text" id="text4">0</div>
+          </div>
+          <div class="card">
+            <h4>TOC (Obsessivo-Compulsivo)</h4>
+            <div class="thermometer" id="gauge5">
+              <div class="thermometer-fill" id="fill5"></div>
+            </div>
+            <div class="thermometer-text" id="text5">0</div>
+          </div>
+          <div class="card">
+            <h4>Autoestima / Desvalor</h4>
+            <div class="thermometer" id="gauge6">
+              <div class="thermometer-fill" id="fill6"></div>
+            </div>
+            <div class="thermometer-text" id="text6">0</div>
+          </div>
+          <div class="card">
+            <h4>TAB (Transtorno Afetivo Bipolar)</h4>
+            <div class="thermometer" id="gauge7">
+              <div class="thermometer-fill" id="fill7"></div>
+            </div>
+            <div class="thermometer-text" id="text7">0</div>
+          </div>
+        </div>
+        
+        <p class="legend" style="text-align:center;">Verde: leve | Laranja: moderado | Vermelho: grave</p>
+        <p id="finalNote">*O resultado apresentado é preliminar. A avaliação clínica final será realizada pelo psicólogo.</p>
+        
+        <div style="text-align:center; margin-top:20px;">
+          <button class="btn" onclick="enviarResultado()">Enviar Resultado ao Psicólogo</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025. Todos os direitos reservados.</p>
+      <p>Richelmy Murta, Psicólogo Clínico</p>
+      <p>Especialista em Terapia Cognitivo-Comportamental</p>
+    </footer>
+  </div>
+
+  <script>
+    // Perguntas para cada bloco (10 por bloco). Agora com 7 blocos, incluindo TAB
+    const questionsData = {
+      // Bloco 1: TAS
+      block1: [
+        "Sinto medo de ser observada e avaliada negativamente ao me expor.",
+        "Evito apresentações ou reuniões onde posso ser foco de atenção.",
+        "Meu corpo responde com sintomas físicos intensos ao me apresentar.",
+        "Me preocupo por dias antes de uma situação de exposição pública.",
+        "Após uma apresentação, passo muito tempo analisando meu desempenho negativamente.",
+        "Acredito que, se eu errar em público, serei rejeitada ou ridicularizada.",
+        "Já declinei oportunidades profissionais por medo de falar em público.",
+        "Isso vem acontecendo há mais de 6 meses.",
+        "Esse medo atrapalha meu desempenho no trabalho.",
+        "Sinto que todos estão atentos aos meus erros quando me exponho."
+      ],
+      // Bloco 2: TDM
+      block2: [
+        "Me sinto triste, vazia ou desesperançada na maior parte dos dias.",
+        "Perdi interesse pelas coisas que antes me motivavam.",
+        "Sinto cansaço excessivo, mesmo sem muito esforço físico.",
+        "Tenho dificuldade para dormir ou durmo em excesso.",
+        "Sinto-me culpada ou inútil com frequência.",
+        "Tenho dificuldade de concentração ou tomada de decisão.",
+        "Tenho crises de choro ou vontade de chorar sem motivo claro.",
+        "Sinto que não tenho valor ou que sou um peso para os outros.",
+        "Já pensei que as pessoas estariam melhor sem mim.",
+        "Esses sintomas atrapalham meu trabalho, relações ou rotina diária."
+      ],
+      // Bloco 3: TAG
+      block3: [
+        "Me preocupo constantemente com muitos aspectos da minha vida.",
+        "Mesmo quando tudo está bem, sinto que algo ruim pode acontecer.",
+        "Tenho dificuldade para controlar meus pensamentos ansiosos.",
+        "Sinto tensão muscular, dores ou agitação física frequente.",
+        "Meu sono é leve, interrompido ou não reparador.",
+        "Tenho dificuldade de concentração por estar sempre preocupada.",
+        "Me sinto frequentemente inquieta ou no limite.",
+        "Temo não dar conta de minhas responsabilidades, mesmo estando preparada.",
+        "As pessoas me consideram muito preocupada ou perfeccionista.",
+        "Essa preocupação generalizada já dura mais de 6 meses."
+      ],
+      // Bloco 4: TPE
+      block4: [
+        "Evito envolvimento com outras pessoas por medo de ser rejeitada.",
+        "Só me aproximo de alguém se sinto segurança absoluta de aceitação.",
+        "Tenho medo constante de críticas ou humilhações.",
+        "Me considero socialmente inferior ou menos competente que os outros.",
+        "Fico extremamente desconfortável em situações novas ou sociais.",
+        "Costumo pensar que, se eu mostrar quem sou, serei julgada.",
+        "Tenho baixa tolerância a frustrações sociais.",
+        "Já deixei de fazer algo importante por medo de me envergonhar.",
+        "Esse padrão é antigo, desde a juventude.",
+        "Isso afeta meus relacionamentos, decisões e desempenho profissional."
+      ],
+      // Bloco 5: TOC
+      block5: [
+        "Tenho pensamentos indesejados e repetitivos que me causam incômodo.",
+        "Tento evitar certos pensamentos, mas eles continuam voltando.",
+        "Esses pensamentos não têm sentido para mim, mas me afetam emocionalmente.",
+        "Já fiquei presa em dúvidas repetitivas difíceis de resolver.",
+        "Sinto culpa por pensamentos que nunca colocaria em prática.",
+        "Já tentei me distrair para evitar esses pensamentos.",
+        "Tenho medo de que meus pensamentos signifiquem algo ruim sobre mim.",
+        "Já repeti ações mentais (rezas, contagens, frases) para aliviar esses pensamentos.",
+        "Isso me consumia por mais de 1h por dia, em alguns momentos.",
+        "Hoje, esses pensamentos ocorrem esporadicamente, mas já foram piores."
+      ],
+      // Bloco 6: Autoestima
+      block6: [
+        "Me sinto inferior à maioria das pessoas.",
+        "Evito elogios ou não acredito quando os recebo.",
+        "Acho que preciso me esforçar o dobro para ser aceita.",
+        "Me comparo constantemente e me vejo como “menos capaz”.",
+        "Tenho medo de errar por medo do que vão pensar de mim.",
+        "Às vezes sinto que “enganei” as pessoas e que vão descobrir isso.",
+        "Evito desafios mesmo estando preparada, por medo de fracassar.",
+        "Tenho dificuldade em reconhecer minhas conquistas como mérito pessoal.",
+        "Sinto que preciso da aprovação dos outros para me sentir bem.",
+        "Me sinto “em dívida” com o mundo, mesmo quando faço o meu melhor."
+      ],
+      // Bloco 7: TAB (Transtorno Afetivo Bipolar)
+      block7: [
+        "Tive períodos de humor eufórico, expansivo ou irritável por vários dias seguidos.",
+        "Dormi pouco sem sentir cansaço significativo.",
+        "Senti necessidade de realizar muitas atividades, me sentindo 'acelerado(a)'.",
+        "Falei muito ou sentia que não conseguia parar de falar.",
+        "Me distraía com facilidade, mudando de assunto rapidamente.",
+        "Tomei decisões impulsivas que me trouxeram problemas.",
+        "Fiz gastos além do normal ou assumi riscos incomuns.",
+        "As pessoas me diziam que eu estava 'diferente' ou 'inquieto(a)'.",
+        "Esses períodos duraram pelo menos 4 dias consecutivos.",
+        "Esse comportamento causou problemas no trabalho, família ou vida social."
+      ]
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Função para gerar perguntas dinamicamente
+      function generateQuestions(blockId, questionsArray) {
+        return questionsArray.map((q, index) => {
+          const qNum = index + 1;
+          return `
+            <div class="question">
+              <p><span>${qNum}.</span> ${q}</p>
+              <div class="options">
+                <label><input type="radio" name="q${blockId}_${qNum}" value="0" required> 0</label>
+                <label><input type="radio" name="q${blockId}_${qNum}" value="1"> 1</label>
+                <label><input type="radio" name="q${blockId}_${qNum}" value="2"> 2</label>
+                <label><input type="radio" name="q${blockId}_${qNum}" value="3"> 3</label>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Injetar perguntas em cada bloco (1 a 7)
+      document.getElementById('questions1').innerHTML = generateQuestions(1, questionsData.block1);
+      document.getElementById('questions2').innerHTML = generateQuestions(2, questionsData.block2);
+      document.getElementById('questions3').innerHTML = generateQuestions(3, questionsData.block3);
+      document.getElementById('questions4').innerHTML = generateQuestions(4, questionsData.block4);
+      document.getElementById('questions5').innerHTML = generateQuestions(5, questionsData.block5);
+      document.getElementById('questions6').innerHTML = generateQuestions(6, questionsData.block6);
+      document.getElementById('questions7').innerHTML = generateQuestions(7, questionsData.block7);
+
+      // Função para esconder a splash screen e exibir a página principal
+      window.hideSplash = function() {
+        document.getElementById('splash').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      };
+
+      // Função para garantir que todas as perguntas foram respondidas
+      function allQuestionsAnswered() {
+        const totalBlocks = 7;
+        const questionsPerBlock = 10;
+        for (let b = 1; b <= totalBlocks; b++) {
+          for (let q = 1; q <= questionsPerBlock; q++) {
+            const radios = document.getElementsByName(`q${b}_${q}`);
+            let answered = false;
+            for (let radio of radios) {
+              if (radio.checked) {
+                answered = true;
+                break;
+              }
+            }
+            if (!answered) return false;
+          }
+        }
+        return true;
+      }
+
+      // Função para corrigir o teste e atualizar os termômetros
+      window.corrigir = function() {
+        if (!allQuestionsAnswered()) {
+          alert("Por favor, responda todas as questões antes de corrigir.");
+          return;
+        }
+        const totalBlocks = 7;
+        let scores = Array(totalBlocks).fill(0);
+        // Calcular a pontuação para cada bloco
+        for (let b = 1; b <= totalBlocks; b++) {
+          for (let q = 1; q <= 10; q++) {
+            const radios = document.getElementsByName(`q${b}_${q}`);
+            for (let radio of radios) {
+              if (radio.checked) {
+                scores[b - 1] += parseInt(radio.value);
+              }
+            }
+          }
+        }
+        
+        // Critérios adicionais (exemplo)
+        const criteria1 = [7,8,9].every(num => {
+          const radios = document.getElementsByName(`q1_${num}`);
+          for (let radio of radios) {
+            if (radio.checked && parseInt(radio.value) > 0) return true;
+          }
+          return false;
+        });
+        const criteria2 = [1,2].some(num => {
+          const radios = document.getElementsByName(`q2_${num}`);
+          for (let radio of radios) {
+            if (radio.checked && parseInt(radio.value) > 0) return true;
+          }
+          return false;
+        });
+        const criteria3 = (() => {
+          const radios = document.getElementsByName("q3_10");
+          for (let radio of radios) {
+            if (radio.checked && parseInt(radio.value) > 0) return true;
+          }
+          return false;
+        })();
+        const criteria4 = (() => {
+          const radios = document.getElementsByName("q4_9");
+          for (let radio of radios) {
+            if (radio.checked && parseInt(radio.value) > 0) return true;
+          }
+          return false;
+        })();
+        const criteria7 = [9,10].every(num => {
+          const radios = document.getElementsByName("q7_" + num);
+          for (let radio of radios) {
+            if (radio.checked && parseInt(radio.value) > 0) return true;
+          }
+          return false;
+        });
+        
+        function getLevel(score) {
+          if (score <= 10) return { level: 'Leve', color: 'green' };
+          if (score <= 20) return { level: 'Moderado', color: 'orange' };
+          return { level: 'Grave', color: 'red' };
+        }
+        
+        // Atualizar os termômetros (7 blocos)
+        for (let b = 0; b < totalBlocks; b++) {
+          const result = getLevel(scores[b]);
+          document.getElementById('fill' + (b+1)).style.height = (scores[b] / 30 * 100) + '%';
+          document.getElementById('fill' + (b+1)).style.background = result.color;
+          document.getElementById('text' + (b+1)).innerText = scores[b] + ' (' + result.level + ')';
+        }
+        
+        let clinicalSummary = "";
+        if (scores[1] >= 20 && criteria2) clinicalSummary += "Principal: Transtorno Depressivo Maior. ";
+        if (scores[0] >= 21 && criteria1) clinicalSummary += "Comorbidade: Ansiedade Social (desempenho). ";
+        if (scores[2] >= 21 && criteria3) clinicalSummary += "Comorbidade: Transtorno de Ansiedade Generalizada. ";
+        if (scores[3] >= 21 && criteria4) clinicalSummary += "Possível: Personalidade Evitativa. ";
+        if (scores[4] >= 15 && scores[4] <= 21) clinicalSummary += "Indícios: Sintomas Obsessivo-Compulsivos moderados. ";
+        if (scores[5] >= 24) clinicalSummary += "Importante: Baixa Autoestima / Crença de Desvalor intensa. ";
+        if (scores[6] >= 21 && criteria7) clinicalSummary += "Comorbidade: Transtorno Afetivo Bipolar (TAB). ";
+        
+        if (clinicalSummary === "") clinicalSummary = "Nenhum padrão clínico relevante identificado.";
+        
+        document.getElementById('clinicalSummary').innerText = "Quadro Clínico Mais Provável: " + clinicalSummary;
+        
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+      };
+
+      // Função para enviar resultados via WhatsApp
+      window.enviarResultado = function() {
+        let scores = Array(7).fill(0);
+        for (let b = 1; b <= 7; b++) {
+          for (let q = 1; q <= 10; q++) {
+            const radios = document.getElementsByName(`q${b}_${q}`);
+            for (let radio of radios) {
+              if (radio.checked) {
+                scores[b - 1] += parseInt(radio.value);
+              }
+            }
+          }
+        }
+        function getLevel(score) {
+          if (score <= 10) return { level: 'Leve' };
+          if (score <= 20) return { level: 'Moderado' };
+          return { level: 'Grave' };
+        }
+        let diagnostic = "";
+        diagnostic += "TAS: " + scores[0] + " (" + getLevel(scores[0]).level + ")\n";
+        diagnostic += "TDM: " + scores[1] + " (" + getLevel(scores[1]).level + ")\n";
+        diagnostic += "TAG: " + scores[2] + " (" + getLevel(scores[2]).level + ")\n";
+        diagnostic += "TPE: " + scores[3] + " (" + getLevel(scores[3]).level + ")\n";
+        diagnostic += "TOC: " + scores[4] + " (" + getLevel(scores[4]).level + ")\n";
+        diagnostic += "Autoestima: " + scores[5] + " (" + getLevel(scores[5]).level + ")\n";
+        diagnostic += "TAB: " + scores[6] + " (" + getLevel(scores[6]).level + ")\n";
+        
+        const name = document.getElementById('patientName').value.trim() || "Paciente";
+        const date = document.getElementById('responseDate').value || new Date().toLocaleDateString();
+        const fullMessage = "Nome: " + name + "\nData: " + date + "\nResultado do RAC-5TR:\n" + diagnostic;
+        
+        const message = encodeURIComponent(fullMessage);
+        // Formato completo: 55 + 35 + 984640729
+        const phone = "5535984640729";
+        const url = "https://wa.me/" + phone + "?text=" + message;
+        window.open(url, "_blank");
+      };
+    });
+  </script>
+</body>
+</html>

@@ -2,358 +2,403 @@
 <html lang="pt-BR">
 
 <head>
+	<!-- Document Meta -->
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>RAC‑5TR: Rastreio Autoaplicável Clínico</title>
-	<meta name="description" content="RAC‑5TR: Rastreio autoaplicável clínico baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
-	<meta name="keywords" content="RAC‑5TR, rastreio clínico, DSM‑5‑TR, psicologia, autoavaliação">
-	<!-- Font Awesome para ícone WhatsApp -->
+	<!-- Primary SEO Meta Tags -->
+	<title>RAC‑5TR: Rastreio Autoaplicável Clínico – Versão DSM‑5‑TR</title>
+	<meta name="description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico. Faça seu autoavaliação de forma rápida e precisa.">
+	<meta name="keywords" content="RAC‑5TR, DSM‑5‑TR, rastreio clínico, autoavaliação, psicologia, saúde mental">
+	<meta name="author" content="Richelmy Murta – Psicólogo Clínico">
+	<meta name="robots" content="index, follow">
+	<link rel="canonical" href="https://ricmurtapsicologia.github.io/Rastreioclinico/">
+	<!-- Favicon & Touch Icons -->
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<!-- Theme Color -->
+	<meta name="theme-color" content="#c8a165">
+	<!-- Open Graph / Facebook -->
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="RAC‑5TR: Rastreio Autoaplicável Clínico – Versão DSM‑5‑TR">
+	<meta property="og:description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
+	<meta property="og:url" content="https://ricmurtapsicologia.github.io/Rastreioclinico/">
+	<meta property="og:site_name" content="RAC‑5TR">
+	<meta property="og:image" content="https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg">
+	<meta property="og:image:alt" content="Banner RAC‑5TR – Rastreio Autoaplicável Clínico">
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ricmurtapsicologia">
+	<meta name="twitter:creator" content="@ricmurtapsicologia">
+	<meta name="twitter:title" content="RAC‑5TR: Rastreio Autoaplicável Clínico">
+	<meta name="twitter:description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
+	<meta name="twitter:image" content="https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg">
+	<meta name="twitter:image:alt" content="Banner RAC‑5TR – Rastreio Autoaplicável Clínico">
+	<!-- Schema.org JSON‑LD for Organization -->
+	<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "Psychologist",
+		  "name": "Richelmy Murta",
+		  "url": "https://ricmurtapsicologia.github.io/Rastreioclinico/",
+		  "logo": "https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg",
+		  "sameAs": [
+		    "https://www.facebook.com/ricmurtapsicologia",
+		    "https://www.instagram.com/ricmurtapsicologia"
+		  ]
+		}
+	</script>
+	<!-- Font Awesome for WhatsApp Icon -->
 	<script src="https://kit.fontawesome.com/2b444a9f1f.js" crossorigin="anonymous"></script>
-	<style>
-		:root {
-		  --dark-bg:    #1f1f1f;
-		  --mid-bg:     #2b2b2b;
-		  --light-bg:   #f4f4f4;
-		  --accent:     #c8a165;
-		  --text:       #ffffff;
-		  --text-dark:  #333333;
-		  --whatsapp:   #25D366;
-		  --gap:        1rem;
-		  --radius:     0.5rem;
-		  --transition: 0.4s ease-in-out;
-		}
-		*, *::before, *::after {
-		  box-sizing: border-box;
-		  margin: 0;
-		  padding: 0;
-		}
-		html, body {
-		  width: 100%;
-		  height: 100%;
-		  overflow-x: hidden;
-		}
-		body {
-		  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		  background: var(--light-bg);
-		  color: var(--text-dark);
-		  line-height: 1.6;
-		  transition: background var(--transition), color var(--transition);
-		}
-		body.dark {
-		  background: var(--dark-bg);
-		  color: var(--text);
-		}
-		
-		/* Toggle Noturno */
-		#darkModeToggle {
-		  position: fixed;
-		  top: 1rem;
-		  right: 1rem;
-		  background: none;
-		  border: none;
-		  font-size: 1.5rem;
-		  cursor: pointer;
-		  color: var(--text-dark);
-		  transition: color var(--transition);
-		  z-index: 1001;
-		}
-		body.dark #darkModeToggle {
-		  color: var(--text);
-		}
-		
-		/* Splash */
-		#splash {
-		  position: fixed;
-		  inset: 0;
-		  background: var(--dark-bg);
-		  color: var(--text);
-		  display: flex;
-		  flex-direction: column;
-		  align-items: center;
-		  justify-content: center;
-		  gap: var(--gap);
-		  text-align: center;
-		  z-index: 1000;
-		  transition: opacity var(--transition), visibility var(--transition);
-		}
-		#splash.hidden {
-		  opacity: 0;
-		  visibility: hidden;
-		}
-		@keyframes fadeOut {
-		  to {
-		    opacity: 0;
-		    visibility: hidden;
-		  }
-		}
-		
-		/* Container */
-		.container {
-		  max-width: 960px;
-		  margin: 0 auto;
-		  padding: 0 var(--gap);
-		  opacity: 0;
-		  transform: translateY(10%);
-		  transition: opacity var(--transition), transform var(--transition);
-		}
-		.container.show {
-		  opacity: 1;
-		  transform: translateY(0);
-		}
-		
-		/* Hero */
-		.hero {
-		  position: relative;
-		  width: 100%;
-		  aspect-ratio: 16/9;
-		  overflow: hidden;
-		  margin: 1rem 0;
-		}
-		.hero img {
-		  position: absolute;
-		  top: -10%;
-		  left: 0;
-		  width: 100%;
-		  height: auto;
-		  object-fit: cover;
-		  object-position: 50% 50%;
-		}
-		@media (min-width: 600px) {
-		  .hero img {
-		    border-radius: var(--radius);
-		  }
-		}
-		
-		/* Introdução */
-		.intro {
-		  background: var(--mid-bg);
-		  color: var(--text);
-		  padding: 1.5rem;
-		  border-radius: var(--radius);
-		  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-		  margin-bottom: 2rem;
-		  text-align: justify;
-		  transition: background var(--transition), color var(--transition);
-		}
-		body.dark .intro {
-		  background: #333;
-		}
-		.intro h2 {
-		  font-size: 1.75rem;
-		  margin-bottom: 1rem;
-		  color: var(--accent);
-		}
-		.intro p + p {
-		  margin-top: 1rem;
-		}
-		
-		/* Formulário */
-		form {
-		  background: #fff;
-		  padding: 1.5rem;
-		  border-radius: var(--radius);
-		  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-		  margin-bottom: 2rem;
-		  transition: background var(--transition), color var(--transition);
-		}
-		body.dark form {
-		  background: #222;
-		  color: #ddd;
-		}
-		.field {
-		  margin-bottom: var(--gap);
-		}
-		.field label {
-		  display: block;
-		  font-weight: 600;
-		  margin-bottom: .25rem;
-		  color: var(--mid-bg);
-		}
-		body.dark .field label {
-		  color: #ccc;
-		}
-		.field input {
-		  width: 100%;
-		  padding: .75rem;
-		  border: 2px solid var(--accent);
-		  border-radius: var(--radius);
-		  background: #fff;
-		  color: #000;
-		  transition: background var(--transition), color var(--transition), border-color var(--transition);
-		}
-		body.dark .field input {
-		  background: #333;
-		  color: #eee;
-		  border-color: var(--accent);
-		}
-		.field input:focus {
-		  outline: none;
-		  border-color: var(--dark-bg);
-		}
-		
-		/* Blocos de Perguntas */
-		.block {
-		  border: 2px solid var(--accent);
-		  border-radius: var(--radius);
-		  padding: var(--gap);
-		  margin-bottom: var(--gap);
-		  transition: background var(--transition), box-shadow var(--transition);
-		}
-		.block:hover {
-		  background: var(--light-bg);
-		  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-		}
-		body.dark .block,
-		body.dark .block:hover {
-		  background: #333;
-		}
-		.block h3 {
-		  font-size: 1.25rem;
-		  margin-bottom: .75rem;
-		  color: var(--text-dark);
-		  border-bottom: 2px solid var(--accent);
-		  padding-bottom: .25rem;
-		}
-		body.dark .block h3 {
-		  color: #eee;
-		}
-		.question {
-		  margin-bottom: .75rem;
-		}
-		.options {
-		  display: flex;
-		  flex-wrap: wrap;
-		  gap: .75rem;
-		}
-		.options label {
-		  display: flex;
-		  align-items: center;
-		  gap: .25rem;
-		  font-size: .9rem;
-		  color: var(--mid-bg);
-		}
-		body.dark .options label {
-		  color: #ccc;
-		}
-		.options input {
-		  accent-color: var(--accent);
-		}
-		
-		/* Ações */
-		.actions {
-		  text-align: center;
-		  margin-top: var(--gap);
-		}
-		.actions button {
-		  background: var(--accent);
-		  color: var(--dark-bg);
-		  border: none;
-		  padding: .75rem 2rem;
-		  font-size: 1rem;
-		  border-radius: var(--radius);
-		  cursor: pointer;
-		  transition: transform var(--transition);
-		}
-		.actions button:hover {
-		  transform: scale(1.05);
-		}
-		
-		/* Resultados */
-		#results {
-		  display: none;
-		  margin-bottom: 2rem;
-		}
-		#clinicalSummary {
-		  background: var(--mid-bg);
-		  color: var(--text);
-		  padding: var(--gap);
-		  border-radius: var(--radius);
-		  margin-bottom: var(--gap);
-		  font-weight: 600;
-		  transition: background var(--transition), color var(--transition);
-		}
-		body.dark #clinicalSummary {
-		  background: #333;
-		}
-		.cards {
-		  display: grid;
-		  gap: var(--gap);
-		  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-		}
-		.card {
-		  background: #fff;
-		  padding: var(--gap);
-		  border-radius: var(--radius);
-		  text-align: center;
-		  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-		  transition: background var(--transition), color var(--transition);
-		}
-		body.dark .card {
-		  background: #222;
-		  color: #ddd;
-		}
-		.thermometer {
-		  position: relative;
-		  width: 30px;
-		  height: 140px;
-		  background: #eee;
-		  border-radius: 15px;
-		  margin: 0 auto .5rem;
-		  overflow: hidden;
-		  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
-		}
-		body.dark .thermometer {
-		  background: #444;
-		}
-		.thermometer-fill {
-		  position: absolute;
-		  bottom: 0;            /* cresce de baixo para cima */
-		  width: 100%;
-		  height: 0;
-		  background: var(--accent);
-		  transition: height 1s var(--transition);
-		}
-		.thermometer-text {
-		  font-size: .85rem;
-		  color: var(--mid-bg);
-		}
-		body.dark .thermometer-text {
-		  color: #ccc;
-		}
-		
-		/* Botão WhatsApp */
-		.send-whatsapp {
-		  display: inline-flex;
-		  align-items: center;
-		  gap: .5rem;
-		  background: var(--whatsapp);
-		  color: #fff;
-		  padding: .75rem 1.5rem;
-		  border: none;
-		  border-radius: var(--radius);
-		  font-size: 1rem;
-		  cursor: pointer;
-		  transition: transform var(--transition);
-		  margin-top: var(--gap);
-		}
-		.send-whatsapp:hover {
-		  transform: scale(1.05);
-		}
-		.send-whatsapp i {
-		  font-size: 1.2rem;
-		}
-		
-		footer {
-		  text-align: center;
-		  color: var(--mid-bg);
-		  font-size: .85rem;
-		  margin: 2rem 0 1rem;
-		  transition: color var(--transition);
-		}
-		body.dark footer {
-		  color: #aaa;
-		}
-	</style>
+</head>
+<style>
+	:root {
+	  --dark-bg:    #1f1f1f;
+	  --mid-bg:     #2b2b2b;
+	  --light-bg:   #f4f4f4;
+	  --accent:     #c8a165;
+	  --text:       #ffffff;
+	  --text-dark:  #333333;
+	  --whatsapp:   #25D366;
+	  --gap:        1rem;
+	  --radius:     0.5rem;
+	  --transition: 0.4s ease-in-out;
+	}
+	*, *::before, *::after {
+	  box-sizing: border-box;
+	  margin: 0;
+	  padding: 0;
+	}
+	html, body {
+	  width: 100%;
+	  height: 100%;
+	  overflow-x: hidden;
+	}
+	body {
+	  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	  background: var(--light-bg);
+	  color: var(--text-dark);
+	  line-height: 1.6;
+	  transition: background var(--transition), color var(--transition);
+	}
+	body.dark {
+	  background: var(--dark-bg);
+	  color: var(--text);
+	}
+	
+	/* Toggle Noturno */
+	#darkModeToggle {
+	  position: fixed;
+	  top: 1rem;
+	  right: 1rem;
+	  background: none;
+	  border: none;
+	  font-size: 1.5rem;
+	  cursor: pointer;
+	  color: var(--text-dark);
+	  transition: color var(--transition);
+	  z-index: 1001;
+	}
+	body.dark #darkModeToggle {
+	  color: var(--text);
+	}
+	
+	/* Splash */
+	#splash {
+	  position: fixed;
+	  inset: 0;
+	  background: var(--dark-bg);
+	  color: var(--text);
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  gap: var(--gap);
+	  text-align: center;
+	  z-index: 1000;
+	  transition: opacity var(--transition), visibility var(--transition);
+	}
+	#splash.hidden {
+	  opacity: 0;
+	  visibility: hidden;
+	}
+	@keyframes fadeOut {
+	  to {
+	    opacity: 0;
+	    visibility: hidden;
+	  }
+	}
+	
+	/* Container */
+	.container {
+	  max-width: 960px;
+	  margin: 0 auto;
+	  padding: 0 var(--gap);
+	  opacity: 0;
+	  transform: translateY(10%);
+	  transition: opacity var(--transition), transform var(--transition);
+	}
+	.container.show {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+	
+	/* Hero */
+	.hero {
+	  position: relative;
+	  width: 100%;
+	  aspect-ratio: 16/9;
+	  overflow: hidden;
+	  margin: 1rem 0;
+	}
+	.hero img {
+	  position: absolute;
+	  top: -10%;
+	  left: 0;
+	  width: 100%;
+	  height: auto;
+	  object-fit: cover;
+	  object-position: 50% 50%;
+	}
+	@media (min-width: 600px) {
+	  .hero img {
+	    border-radius: var(--radius);
+	  }
+	}
+	
+	/* Introdução */
+	.intro {
+	  background: var(--mid-bg);
+	  color: var(--text);
+	  padding: 1.5rem;
+	  border-radius: var(--radius);
+	  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	  margin-bottom: 2rem;
+	  text-align: justify;
+	  transition: background var(--transition), color var(--transition);
+	}
+	body.dark .intro {
+	  background: #333;
+	}
+	.intro h2 {
+	  font-size: 1.75rem;
+	  margin-bottom: 1rem;
+	  color: var(--accent);
+	}
+	.intro p + p {
+	  margin-top: 1rem;
+	}
+	
+	/* Formulário */
+	form {
+	  background: #fff;
+	  padding: 1.5rem;
+	  border-radius: var(--radius);
+	  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+	  margin-bottom: 2rem;
+	  transition: background var(--transition), color var(--transition);
+	}
+	body.dark form {
+	  background: #222;
+	  color: #ddd;
+	}
+	.field {
+	  margin-bottom: var(--gap);
+	}
+	.field label {
+	  display: block;
+	  font-weight: 600;
+	  margin-bottom: .25rem;
+	  color: var(--mid-bg);
+	}
+	body.dark .field label {
+	  color: #ccc;
+	}
+	.field input {
+	  width: 100%;
+	  padding: .75rem;
+	  border: 2px solid var(--accent);
+	  border-radius: var(--radius);
+	  background: #fff;
+	  color: #000;
+	  transition: background var(--transition), color var(--transition), border-color var(--transition);
+	}
+	body.dark .field input {
+	  background: #333;
+	  color: #eee;
+	  border-color: var(--accent);
+	}
+	.field input:focus {
+	  outline: none;
+	  border-color: var(--dark-bg);
+	}
+	
+	/* Blocos de Perguntas */
+	.block {
+	  border: 2px solid var(--accent);
+	  border-radius: var(--radius);
+	  padding: var(--gap);
+	  margin-bottom: var(--gap);
+	  transition: background var(--transition), box-shadow var(--transition);
+	}
+	.block:hover {
+	  background: var(--light-bg);
+	  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+	}
+	body.dark .block,
+	body.dark .block:hover {
+	  background: #333;
+	}
+	.block h3 {
+	  font-size: 1.25rem;
+	  margin-bottom: .75rem;
+	  color: var(--text-dark);
+	  border-bottom: 2px solid var(--accent);
+	  padding-bottom: .25rem;
+	}
+	body.dark .block h3 {
+	  color: #eee;
+	}
+	.question {
+	  margin-bottom: .75rem;
+	}
+	.options {
+	  display: flex;
+	  flex-wrap: wrap;
+	  gap: .75rem;
+	}
+	.options label {
+	  display: flex;
+	  align-items: center;
+	  gap: .25rem;
+	  font-size: .9rem;
+	  color: var(--mid-bg);
+	}
+	body.dark .options label {
+	  color: #ccc;
+	}
+	.options input {
+	  accent-color: var(--accent);
+	}
+	
+	/* Ações */
+	.actions {
+	  text-align: center;
+	  margin-top: var(--gap);
+	}
+	.actions button {
+	  background: var(--accent);
+	  color: var(--dark-bg);
+	  border: none;
+	  padding: .75rem 2rem;
+	  font-size: 1rem;
+	  border-radius: var(--radius);
+	  cursor: pointer;
+	  transition: transform var(--transition);
+	}
+	.actions button:hover {
+	  transform: scale(1.05);
+	}
+	
+	/* Resultados */
+	#results {
+	  display: none;
+	  margin-bottom: 2rem;
+	}
+	#clinicalSummary {
+	  background: var(--mid-bg);
+	  color: var(--text);
+	  padding: var(--gap);
+	  border-radius: var(--radius);
+	  margin-bottom: var(--gap);
+	  font-weight: 600;
+	  transition: background var(--transition), color var(--transition);
+	}
+	body.dark #clinicalSummary {
+	  background: #333;
+	}
+	.cards {
+	  display: grid;
+	  gap: var(--gap);
+	  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	}
+	.card {
+	  background: #fff;
+	  padding: var(--gap);
+	  border-radius: var(--radius);
+	  text-align: center;
+	  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	  transition: background var(--transition), color var(--transition);
+	}
+	body.dark .card {
+	  background: #222;
+	  color: #ddd;
+	}
+	.thermometer {
+	  position: relative;
+	  width: 30px;
+	  height: 140px;
+	  background: #eee;
+	  border-radius: 15px;
+	  margin: 0 auto .5rem;
+	  overflow: hidden;
+	  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+	}
+	body.dark .thermometer {
+	  background: #444;
+	}
+	.thermometer-fill {
+	  position: absolute;
+	  bottom: 0;            /* cresce de baixo para cima */
+	  width: 100%;
+	  height: 0;
+	  background: var(--accent);
+	  transition: height 1s var(--transition);
+	}
+	.thermometer-text {
+	  font-size: .85rem;
+	  color: var(--mid-bg);
+	}
+	body.dark .thermometer-text {
+	  color: #ccc;
+	}
+	
+	/* Botão WhatsApp */
+	.send-whatsapp {
+	  display: inline-flex;
+	  align-items: center;
+	  gap: .5rem;
+	  background: var(--whatsapp);
+	  color: #fff;
+	  padding: .75rem 1.5rem;
+	  border: none;
+	  border-radius: var(--radius);
+	  font-size: 1rem;
+	  cursor: pointer;
+	  transition: transform var(--transition);
+	  margin-top: var(--gap);
+	}
+	.send-whatsapp:hover {
+	  transform: scale(1.05);
+	}
+	.send-whatsapp i {
+	  font-size: 1.2rem;
+	}
+	
+	footer {
+	  text-align: center;
+	  color: var(--mid-bg);
+	  font-size: .85rem;
+	  margin: 2rem 0 1rem;
+	  transition: color var(--transition);
+	}
+	body.dark footer {
+	  color: #aaa;
+	}
+</style>
 </head>
 
 <body>

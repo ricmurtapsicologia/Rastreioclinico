@@ -10,6 +10,9 @@ on:
 permissions:
   contents: write
 
+env:
+  CANONICAL_IDENTITY_VERSION: '2.0.0'
+
 jobs:
   migrate:
     runs-on: ubuntu-latest

@@ -1,0 +1,46 @@
+name: Remover WhatsApp de resultados v2
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/remove-whatsapp-v2.yml']
+permissions:
+  contents: write
+jobs:
+  sanitize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove patient result sharing only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html'); s=p.read_text(encoding='utf-8'); before=s
+          s=re.sub(r'\s*<!--\s*Font Awesome for WhatsApp Icon\s*-->\s*<script[^>]*fontawesome[^>]*></script>\s*','\n',s,count=1,flags=re.I)
+          s=re.sub(r'\s*--whatsapp:\s*#[0-9A-Fa-f]+;','',s,count=1)
+          s=re.sub(r'\s*/\*\s*Botão WhatsApp\s*\*/\s*\.send-whatsapp\s*\{.*?\}\s*\.send-whatsapp:hover\s*\{.*?\}\s*\.send-whatsapp i\s*\{.*?\}\s*','\n',s,count=1,flags=re.S|re.I)
+          s=re.sub(r'\s*<div\s+style=["\']text-align:center;["\']>\s*<button[^>]*id=["\']btnEnviar["\'][^>]*>.*?</button>\s*</div>\s*','\n',s,count=1,flags=re.S|re.I)
+          s=re.sub(r"\s*const\s+btnEnv\s*=\s*document\.getElementById\(['\"]btnEnviar['\"]\);",'',s,count=1)
+          s=re.sub(r'\s*const\s+enviarResultado\s*=\s*\(\)\s*=>\s*\{.*?window\.open\(`https://wa\.me/.*?\);\s*\};\s*','\n',s,count=1,flags=re.S)
+          s=re.sub(r'\s*btnEnv\.addEventListener\(["\']click["\'],\s*enviarResultado\);','',s,count=1)
+          if s==before: raise SystemExit('NO_WHATSAPP_CHANGE')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Contract check
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text(encoding='utf-8')
+          if re.search(r'wa\.me|btnEnviar|send-whatsapp|enviarResultado|whatsapp',s,re.I): raise SystemExit('WHATSAPP_RESIDUE')
+          if 'id="btnCorrigir"' not in s or 'questionsData' not in s: raise SystemExit('QUESTIONNAIRE_CHANGED')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Remove compartilhamento de resultados por WhatsApp'
+          git push

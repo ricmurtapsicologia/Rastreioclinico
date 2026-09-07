@@ -21,13 +21,9 @@ jobs:
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
           before=s
-          # CSS dedicated to splash.
           s=re.sub(r'\s*/\*\s*Splash\s*\*/\s*#splash\s*\{.*?\}\s*#splash\.hidden\s*\{.*?\}\s*@keyframes\s+fadeOut\s*\{.*?\}\s*', '\n', s, count=1, flags=re.S|re.I)
-          # Splash markup.
           s=re.sub(r'\s*<div\s+id=["\']splash["\'][^>]*>.*?</div>\s*', '\n', s, count=1, flags=re.S|re.I)
-          # Make the clinical content visible from first paint.
           s=s.replace('<main id="mainContent" class="container"', '<main id="mainContent" class="container show"', 1)
-          # Remove artificial 2-second gate only.
           s=re.sub(r'\s*//\s*Splash\s*→\s*conteúdo\s*setTimeout\(\(\)\s*=>\s*\{\s*splash\.classList\.add\(["\']hidden["\']\);\s*main\.classList\.add\(["\']show["\']\);\s*\},\s*2000\);\s*', '\n', s, count=1, flags=re.S|re.I)
           s=re.sub(r"\s*const\s+splash\s*=\s*document\.getElementById\(['\"]splash['\"]\);", '', s, count=1)
           if s==before: raise SystemExit('NO_SPLASH_CHANGE')
@@ -36,9 +32,16 @@ jobs:
       - name: Contract check
         shell: bash
         run: |
-          ! grep -Eqi 'id=["'"']splash|#splash|splash\.classList' index.html
-          grep -q 'id="mainContent" class="container show"' index.html
-          grep -q 'id="btnCorrigir"' index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text(encoding='utf-8')
+          forbidden=[r'id=["\']splash',r'#splash',r'splash\.classList']
+          for pattern in forbidden:
+              if re.search(pattern,s,re.I): raise SystemExit('SPLASH_RESIDUE:'+pattern)
+          if 'id="mainContent" class="container show"' not in s: raise SystemExit('MAIN_NOT_VISIBLE')
+          if 'id="btnCorrigir"' not in s: raise SystemExit('QUESTIONNAIRE_ACTION_MISSING')
+          PY
       - name: Commit
         shell: bash
         run: |

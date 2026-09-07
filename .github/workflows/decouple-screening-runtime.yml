@@ -11,25 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Replace shared screening host only
+      - name: Replace shared screening host only in public files
         run: |
           python3 - <<'PY'
           from pathlib import Path
           old='https://ricmurtapsicologia.github.io/plataforma.terapeutica/assets/'
           new='https://ricmurtapsicologia.github.io/Inicio-de-Jornada-Terapeutica/assets/'
+          exts={'.html','.htm','.js','.mjs','.css','.md'}
           changed=[]
           for p in Path('.').rglob('*'):
-              if not p.is_file() or '.git' in p.parts or p==Path('.github/workflows/decouple-screening-runtime.yml'): continue
-              if p.suffix.lower() not in {'.html','.htm','.js','.mjs','.css','.yml','.yaml','.md'}: continue
+              if not p.is_file() or '.git' in p.parts or '.github' in p.parts or p.suffix.lower() not in exts: continue
               text=p.read_text(encoding='utf-8',errors='ignore')
               nxt=text.replace(old+'css/screening-uniformity-v1.css?v=1.0.0',new+'screening-uniformity-v1.css?v=2.2.1-decoupled').replace(old+'js/screening-uniformity-v1.js?v=1.0.0',new+'screening-uniformity-v1.js?v=2.2.1-decoupled').replace(old+'css/screening-system-v2.css?v=2.0.0',new+'screening-system-v2.css?v=2.2.1-decoupled').replace(old+'js/screening-system-v2.js?v=2.2.1',new+'screening-system-v2.js?v=2.2.1-decoupled')
               if nxt!=text: p.write_text(nxt,encoding='utf-8'); changed.append(str(p))
           print('changed',changed)
           residue=[]
           for p in Path('.').rglob('*'):
-              if p.is_file() and p.suffix.lower() in {'.html','.htm','.js','.mjs','.css','.yml','.yaml'} and p!=Path('.github/workflows/decouple-screening-runtime.yml'):
-                  t=p.read_text(encoding='utf-8',errors='ignore')
-                  if 'plataforma.terapeutica/assets/css/screening-' in t or 'plataforma.terapeutica/assets/js/screening-' in t: residue.append(str(p))
+              if not p.is_file() or '.git' in p.parts or '.github' in p.parts or p.suffix.lower() not in exts: continue
+              t=p.read_text(encoding='utf-8',errors='ignore')
+              if 'plataforma.terapeutica/assets/css/screening-' in t or 'plataforma.terapeutica/assets/js/screening-' in t: residue.append(str(p))
           if residue: raise SystemExit('OLD_SCREENING_HOST_REMAINS '+','.join(residue))
           PY
       - name: Commit migration

@@ -5,7 +5,7 @@
 	<!-- Document Meta -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>RAC‑5TR: Rastreio Autoaplicável Clínico – Versão DSM‑5‑TR</title>
+	<title>Panorama do seu momento emocional</title>
 	<meta name="description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
 	<!-- Canonical -->
 	<link rel="canonical" href="https://ricmurtapsicologia.github.io/Rastreioclinico/">
@@ -16,15 +16,15 @@
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:locale" content="pt_BR">
-	<meta property="og:site_name" content="RAC‑5TR">
-	<meta property="og:title" content="RAC‑5TR: Rastreio Autoaplicável Clínico – Versão DSM‑5‑TR">
+	<meta property="og:site_name" content="Plataforma Terapêutica Richelmy Murta">
+	<meta property="og:title" content="Panorama do seu momento emocional">
 	<meta property="og:description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
 	<meta property="og:url" content="https://ricmurtapsicologia.github.io/Rastreioclinico/">
 	<meta property="og:image" content="https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg">
 	<meta property="og:image:alt" content="Banner RAC‑5TR – Rastreio Autoaplicável Clínico">
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="RAC‑5TR: Rastreio Autoaplicável Clínico">
+	<meta name="twitter:title" content="Panorama do seu momento emocional">
 	<meta name="twitter:description" content="RAC‑5TR: Rastreio clínico autoaplicável baseado no DSM‑5‑TR para identificar áreas que necessitam de apoio terapêutico.">
 	<meta name="twitter:image" content="https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg">
 	<meta name="twitter:image:alt" content="Banner RAC‑5TR – Rastreio Autoaplicável Clínico">
@@ -268,69 +268,6 @@
 	.actions button:hover {
 	  transform: scale(1.05);
 	}
-	
-	/* Resultados */
-	#results {
-	  display: none;
-	  margin-bottom: 2rem;
-	}
-	#clinicalSummary {
-	  background: var(--mid-bg);
-	  color: var(--text);
-	  padding: var(--gap);
-	  border-radius: var(--radius);
-	  margin-bottom: var(--gap);
-	  font-weight: 600;
-	  transition: background var(--transition), color var(--transition);
-	}
-	body.dark #clinicalSummary {
-	  background: #333;
-	}
-	.cards {
-	  display: grid;
-	  gap: var(--gap);
-	  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-	}
-	.card {
-	  background: #fff;
-	  padding: var(--gap);
-	  border-radius: var(--radius);
-	  text-align: center;
-	  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-	  transition: background var(--transition), color var(--transition);
-	}
-	body.dark .card {
-	  background: #222;
-	  color: #ddd;
-	}
-	.thermometer {
-	  position: relative;
-	  width: 30px;
-	  height: 140px;
-	  background: #eee;
-	  border-radius: 15px;
-	  margin: 0 auto .5rem;
-	  overflow: hidden;
-	  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
-	}
-	body.dark .thermometer {
-	  background: #444;
-	}
-	.thermometer-fill {
-	  position: absolute;
-	  bottom: 0;            /* cresce de baixo para cima */
-	  width: 100%;
-	  height: 0;
-	  background: var(--accent);
-	  transition: height 1s var(--transition);
-	}
-	.thermometer-text {
-	  font-size: .85rem;
-	  color: var(--mid-bg);
-	}
-	body.dark .thermometer-text {
-	  color: #ccc;
-	}
 footer {
 	  text-align: center;
 	  color: var(--mid-bg);
@@ -355,7 +292,7 @@ footer {
 		<section class="intro" aria-labelledby="introTitle">
 			<h2 id="introTitle">Saudações!</h2>
 			<p>Este rastreio foi elaborado para oferecer um panorama clínico inicial, alinhado ao DSM‑5‑TR, identificando áreas que podem beneficiar‑se de apoio terapêutico.</p>
-			<p>Informe seu nome e a data, depois leia cada questão e selecione a resposta que melhor descreve sua experiência (0 = Nunca, 1 = Raramente, 2 = Frequentemente, 3 = Sempre). Ao terminar, clique em <strong>"Corrigir"</strong> para visualizar seu resultado. <em>O resultado final será avaliado pelo psicólogo.</em></p>
+			<p>Informe seus dados, leia cada questão e selecione a resposta que melhor descreve sua experiência (0 = Nunca, 1 = Raramente, 2 = Frequentemente, 3 = Sempre). A conclusão só será confirmada após o registro técnico das respostas.</p>
 			<p>Atenciosamente,</p>
 			<p><em>Richelmy Murta — Psicólogo Clínico</em></p>
 		</section>
@@ -374,92 +311,37 @@ footer {
 			</div>
 			<!-- Blocos de perguntas -->
 			<section class="block" id="block1" aria-labelledby="block1Title">
-				<h3 id="block1Title">Ansiedade Social (TAS)</h3>
+				<h3 id="block1Title">Bloco 1</h3>
 				<div id="questions1"></div>
 			</section>
 			<section class="block" id="block2" aria-labelledby="block2Title">
-				<h3 id="block2Title">Depressão (TDM)</h3>
+				<h3 id="block2Title">Bloco 2</h3>
 				<div id="questions2"></div>
 			</section>
 			<section class="block" id="block3" aria-labelledby="block3Title">
-				<h3 id="block3Title">Ansiedade Generalizada (TAG)</h3>
+				<h3 id="block3Title">Bloco 3</h3>
 				<div id="questions3"></div>
 			</section>
 			<section class="block" id="block4" aria-labelledby="block4Title">
-				<h3 id="block4Title">Personalidade Evitativa (TPE)</h3>
+				<h3 id="block4Title">Bloco 4</h3>
 				<div id="questions4"></div>
 			</section>
 			<section class="block" id="block5" aria-labelledby="block5Title">
-				<h3 id="block5Title">Obsessivo‑Compulsivo (TOC)</h3>
+				<h3 id="block5Title">Bloco 5</h3>
 				<div id="questions5"></div>
 			</section>
 			<section class="block" id="block6" aria-labelledby="block6Title">
-				<h3 id="block6Title">Autoestima / Desvalor</h3>
+				<h3 id="block6Title">Bloco 6</h3>
 				<div id="questions6"></div>
 			</section>
 			<section class="block" id="block7" aria-labelledby="block7Title">
-				<h3 id="block7Title">Afetivo Bipolar (TAB)</h3>
+				<h3 id="block7Title">Bloco 7</h3>
 				<div id="questions7"></div>
 			</section>
 			<div class="actions">
-				<button type="button" id="btnCorrigir">Corrigir</button>
+				<button type="button" id="btnConcluir">Concluir rastreio</button>
 			</div>
 		</form>
-		<section id="results" role="region" aria-labelledby="resultsTitle">
-			<h2 id="resultsTitle" style="text-align:center; margin-bottom:1rem;">Resultados</h2>
-			<div id="clinicalSummary" role="alert"></div>
-			<div class="cards">
-				<div class="card">
-					<h4>TAS</h4>
-					<div class="thermometer">
-						<div id="fill1" class="thermometer-fill"></div>
-					</div>
-					<div id="text1" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>TDM</h4>
-					<div class="thermometer">
-						<div id="fill2" class="thermometer-fill"></div>
-					</div>
-					<div id="text2" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>TAG</h4>
-					<div class="thermometer">
-						<div id="fill3" class="thermometer-fill"></div>
-					</div>
-					<div id="text3" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>TPE</h4>
-					<div class="thermometer">
-						<div id="fill4" class="thermometer-fill"></div>
-					</div>
-					<div id="text4" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>TOC</h4>
-					<div class="thermometer">
-						<div id="fill5" class="thermometer-fill"></div>
-					</div>
-					<div id="text5" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>Autoestima</h4>
-					<div class="thermometer">
-						<div id="fill6" class="thermometer-fill"></div>
-					</div>
-					<div id="text6" class="thermometer-text">0</div>
-				</div>
-				<div class="card">
-					<h4>TAB</h4>
-					<div class="thermometer">
-						<div id="fill7" class="thermometer-fill"></div>
-					</div>
-					<div id="text7" class="thermometer-text">0</div>
-				</div>
-			</div>
-</section>
 	</main>
 	<footer role="contentinfo">
 		<p>© 2026 Richelmy Murta — Psicólogo Clínico</p>
@@ -552,16 +434,8 @@ footer {
 		  ]
 		};
 		
-		const level = score =>
-		  score <= 10 ? ['green','Leve']
-		  : score <= 20 ? ['orange','Moderado']
-		  : ['red','Grave'];
-		
+
 		document.addEventListener('DOMContentLoaded', () => {
-		  const main      = document.getElementById('mainContent');
-		  const btnCorr   = document.getElementById('btnCorrigir');
-		  const results   = document.getElementById('results');
-// Injeta perguntas
 		  Object.keys(questionsData).forEach((key, i) => {
 		    document.getElementById(`questions${i+1}`).innerHTML =
 		      questionsData[key].map((q, j) => `
@@ -576,42 +450,6 @@ footer {
 		        </div>
 		      `).join('');
 		  });
-		
-		  const allAnswered = () =>
-		    [...document.querySelectorAll('.question')]
-		      .every(q => [...q.querySelectorAll('input')].some(i => i.checked));
-		
-		  const corrigir = () => {
-		    if (!allAnswered()) {
-		      alert('Por favor, responda todas as questões antes de corrigir.');
-		      return;
-		    }
-		    const scores = Object.keys(questionsData).map((k, i) =>
-		      questionsData[k].reduce((sum, _, idx) =>
-		        sum + Number(document.querySelector(`input[name="${k}_${idx+1}"]:checked`).value)
-		      , 0)
-		    );
-		    scores.forEach((s, i) => {
-		      const [cor, txt] = level(s);
-		      document.getElementById(`fill${i+1}`).style.height    = `${(s/30*100)}%`;
-		      document.getElementById(`fill${i+1}`).style.background = cor;
-		      document.getElementById(`text${i+1}`).innerText         = `${s} (${txt})`;
-		    });
-		    let resumo = '';
-		    if (scores[1] >= 20) resumo += 'Principal: Transtorno Depressivo Maior. ';
-		    if (scores[0] >= 21) resumo += 'Ansiedade Social (desempenho). ';
-		    if (scores[2] >= 21) resumo += 'TAG. ';
-		    if (scores[3] >= 21) resumo += 'Personalidade Evitativa. ';
-		    if (scores[4] >= 15) resumo += 'Sintomas Obsessivo‑Compulsivos. ';
-		    if (scores[5] >= 24) resumo += 'Baixa Autoestima. ';
-		    if (scores[6] >= 21) resumo += 'TAB. ';
-		    if (!resumo) resumo = 'Nenhum padrão clínico relevante identificado.';
-		    document.getElementById('clinicalSummary').innerText =
-		      `Quadro Clínico Mais Provável: ${resumo}`;
-		    results.style.display = 'block';
-		    results.scrollIntoView({ behavior: 'smooth' });
-		  };
-btnCorr.addEventListener('click', corrigir);
 		  document.getElementById('darkModeToggle')
 		    .addEventListener('click', () => document.body.classList.toggle('dark'));
 		});

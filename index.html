@@ -99,32 +99,7 @@
 	body.dark #darkModeToggle {
 	  color: var(--text);
 	}
-	
-	/* Splash */
-	#splash {
-	  position: fixed;
-	  inset: 0;
-	  background: var(--dark-bg);
-	  color: var(--text);
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  justify-content: center;
-	  gap: var(--gap);
-	  text-align: center;
-	  z-index: 1000;
-	  transition: opacity var(--transition), visibility var(--transition);
-	}
-	#splash.hidden {
-	  opacity: 0;
-	  visibility: hidden;
-	}
-	@keyframes fadeOut {
-	  to {
-	    opacity: 0;
-	    visibility: hidden;
-	  }
-	}
+}
 	
 	/* Container */
 	.container {
@@ -399,11 +374,7 @@
 	<header role="banner">
 		<button id="darkModeToggle" aria-label="Alternar modo noturno">🌙</button>
 	</header>
-	<div id="splash" role="status" aria-live="polite">
-		<h2>Bem‑vindo(a) ao RAC‑5TR</h2>
-		<p>Carregando…</p>
-	</div>
-	<main id="mainContent" class="container" role="main">
+<main id="mainContent" class="container show" role="main">
 		<section class="hero" aria-label="Banner RAC‑5TR">
 			<img src="https://i.pinimg.com/736x/71/aa/45/71aa4521b8d705e58939e65aa8e73bc2.jpg" alt="Banner RAC‑5TR">
 		</section>
@@ -613,19 +584,11 @@
 		  : ['red','Grave'];
 		
 		document.addEventListener('DOMContentLoaded', () => {
-		  const splash    = document.getElementById('splash');
 		  const main      = document.getElementById('mainContent');
 		  const btnCorr   = document.getElementById('btnCorrigir');
 		  const btnEnv    = document.getElementById('btnEnviar');
 		  const results   = document.getElementById('results');
-		
-		  // Splash → conteúdo
-		  setTimeout(() => {
-		    splash.classList.add('hidden');
-		    main.classList.add('show');
-		  }, 2000);
-		
-		  // Injeta perguntas
+// Injeta perguntas
 		  Object.keys(questionsData).forEach((key, i) => {
 		    document.getElementById(`questions${i+1}`).innerHTML =
 		      questionsData[key].map((q, j) => `

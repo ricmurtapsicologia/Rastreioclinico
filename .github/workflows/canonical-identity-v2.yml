@@ -1,0 +1,58 @@
+name: Canonical Identity v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/canonical-identity-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add canonical identity fields safely
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='<!-- Blocos de perguntas -->'
+          if marker not in s:
+              raise SystemExit('QUESTION_MARKER_MISSING')
+          before_questions, questions=s.split(marker,1)
+          original_questions=questions
+          if 'id="birthDate"' not in before_questions:
+              needle='''\t\t\t<div class="field">\n\t\t\t\t<label for="responseDate">Data</label>\n\t\t\t\t<input type="date" id="responseDate" required>\n\t\t\t</div>'''
+              replacement='''\t\t\t<div class="field">\n\t\t\t\t<label for="birthDate">Data de nascimento</label>\n\t\t\t\t<input type="date" id="birthDate" required>\n\t\t\t</div>\n\t\t\t<div class="field">\n\t\t\t\t<label for="responseDate">Data de aplicação do rastreio</label>\n\t\t\t\t<input type="date" id="responseDate" required>\n\t\t\t</div>'''
+              if needle not in before_questions:
+                  raise SystemExit('IDENTITY_BLOCK_NOT_FOUND')
+              before_questions=before_questions.replace(needle,replacement,1)
+          out=before_questions+marker+questions
+          if out.split(marker,1)[1] != original_questions:
+              raise SystemExit('QUESTION_CONTENT_CHANGED')
+          p.write_text(out,encoding='utf-8')
+          PY
+      - name: Validate identity and questionnaire preservation
+        shell: bash
+        run: |
+          grep -q 'id="patientName"' index.html
+          grep -q 'id="birthDate"' index.html
+          grep -q 'id="responseDate"' index.html
+          grep -q 'Data de aplicação do rastreio' index.html
+          grep -q '<!-- Blocos de perguntas -->' index.html
+      - name: Commit migration
+        shell: bash
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Adiciona identificação canônica ao RAC'
+          git push

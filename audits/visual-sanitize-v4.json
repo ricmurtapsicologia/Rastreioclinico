@@ -1,0 +1,18 @@
+{
+  "instrument": "geral",
+  "title": "RAC-5TR — Rastreio Autoaplicável Clínico",
+  "canonicalHero": "https://ricmurtapsicologia.github.io/Inicio-de-Jornada-Terapeutica/assets/heroes/geral.jpg?v=4.0.0",
+  "before": {
+    "pinimg": 5,
+    "unsplash": 0,
+    "pexels": 0,
+    "pixabay": 0,
+    "localLegacySrc": 0
+  },
+  "after": {
+    "pinimg": 0,
+    "unsplash": 0,
+    "pexels": 0,
+    "pixabay": 0
+  }
+}
